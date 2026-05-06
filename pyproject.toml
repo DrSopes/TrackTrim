@@ -9,7 +9,6 @@ description = "Trim leading and trailing silence from MP3 songs."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "AGPL-3.0-only"
-license-files = ["LICENSE*"]
 
 authors = [
   { name = "Dr.Sopes" }
