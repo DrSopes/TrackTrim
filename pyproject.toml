@@ -4,12 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tracktrim"
-version = "0.1.1"
+version = "0.1.2"
 description = "Trim leading and trailing silence from MP3 songs."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "AGPL-3.0-only"
-
 authors = [
   { name = "Dr.Sopes" }
 ]
@@ -17,6 +16,7 @@ keywords = ["audio", "mp3", "trim", "silence", "music"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Topic :: Multimedia :: Sound/Audio",
 ]
@@ -30,9 +30,12 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/DrSopes/tracktrim"
-Repository = "https://github.com/DrSopes/tracktrim"
-Issues = "https://github.com/DrSopes/tracktrim/issues"
+Homepage = "https://github.com/DrSopes/TrackTrim"
+Repository = "https://github.com/DrSopes/TrackTrim"
+Issues = "https://github.com/DrSopes/TrackTrim/issues"
+
+[project.scripts]
+tracktrim = "tracktrim.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

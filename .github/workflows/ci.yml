@@ -26,4 +26,4 @@ jobs:
 
       - name: Verify import
         run: |
-          python -c "import tracktrim; print(tracktrim.__version__)"
+          python -c "from tracktrim import trim_song, detect_content_bounds, inspect_mp3; print('ok')"

@@ -1,68 +1,79 @@
 # TrackTrim
 
-TrackTrim is a Python library for trimming leading and trailing silence from MP3 songs while preserving MP3 output and common ID3 metadata.
+TrackTrim is a Python library and CLI for trimming leading and trailing silence from MP3 songs.
 
-## Features 
+It detects the first and last non-silent regions of a track, trims the file, writes MP3 output, and preserves common ID3 metadata.
 
-- Detects non-silent content at the beginning and end of a track
-- Trims MP3 files and writes MP3 output
-- Preserves common metadata and cover art through ID3 tag copying
-- Uses a stable bitrate policy for predictable output size and quality
-- Designed to be imported from other Python scripts
+## Features
+
+- Detect leading and trailing silence
+- MP3 input to MP3 output
+- Preserve common metadata and cover art
+- Stable bitrate policy for predictable output size
+- Public Python API and command-line interface
 
 ## Installation
 
-### From GitHub
-
-```bash
-pip install git+https://github.com/DrSopes/tracktrim.git
-```
+### PyPI
 
 ```bash
 pip install tracktrim
 ```
 
-## Usage
+### GitHub
+
+```bash
+pip install git+https://github.com/DrSopes/TrackTrim.git
+```
+
+## Python API
 
 ```python
-from tracktrim import trim_song, detect_content_bounds
+from tracktrim import inspect_mp3, detect_content_bounds, trim_song
 
-info = detect_content_bounds("song.mp3", top_db=35)
+info = inspect_mp3("song.mp3")
 print(info)
 
-result = trim_song(
-    "song.mp3",
-    "song_trimmed.mp3",
-    top_db=35,
-)
+bounds = detect_content_bounds("song.mp3", top_db=35)
+print(bounds)
+
+result = trim_song("song.mp3", "song_trimmed.mp3", top_db=35)
 print(result)
+```
+
+## CLI
+
+```bash
+tracktrim input.mp3 output.mp3 --top-db 35
+```
+
+Optional bitrate override:
+
+```bash
+tracktrim input.mp3 output.mp3 --bitrate 320
 ```
 
 ## Bitrate policy
 
-TrackTrim uses a simple stable output policy:
+TrackTrim uses a stable default policy:
 
 - source bitrate <= 192 kbps -> output 192 kbps
 - source bitrate 193 to 288 kbps -> output 256 kbps
 - source bitrate > 288 kbps -> output 320 kbps
 
-This avoids unpredictable VBR output and keeps file sizes consistent.
-
 ## Development
-
-Create a virtual environment and install the project in editable mode:
 
 ```bash
 python -m venv .venv
 ```
 
-On Windows CMD:
+Windows CMD:
 
 ```bash
 .venv\Scripts\activate
 ```
 
-Then install:
+Install in editable mode:
 
 ```bash
 pip install -e .
@@ -74,12 +85,6 @@ pip install -e .
 python -m pip install --upgrade build
 python -m build
 ```
-
-This creates distribution files in `dist/`.
-
-## Publishing
-
-This repository can publish to PyPI automatically through GitHub Actions using Trusted Publishing.
 
 ## License
 
