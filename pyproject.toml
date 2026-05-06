@@ -17,7 +17,6 @@ keywords = ["audio", "mp3", "trim", "silence", "music"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "License :: OSI Approved :: GNU Affero General Public License v3",
   "Operating System :: OS Independent",
   "Topic :: Multimedia :: Sound/Audio",
 ]
